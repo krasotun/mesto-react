@@ -1,1 +1,1 @@
-# mesto-react
+# Приложение Mesto на React
