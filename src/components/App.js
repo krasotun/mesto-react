@@ -1,13 +1,13 @@
-import logoPath from "./images/logo.svg"
-import './App.css';
+
+// import './App.css';
+
+import Footer from "./Footer";
+import Header from "./Header";
 
 function App() {
 	return (
 		<div className="page__content">
-
-			<header className="header">
-				<img className="header__logo" src={logoPath} alt="Логотип" />
-			</header>
+			<Header />
 
 			<main>
 				<section className="profile">
@@ -28,10 +28,8 @@ function App() {
 				<section className="elements">
 				</section>
 			</main>
+			<Footer />
 
-			<footer className="footer">
-				<p className="footer__text">© 2022 Mesto Russia</p>
-			</footer>
 
 		</div>
 	);
