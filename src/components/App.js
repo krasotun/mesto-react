@@ -107,7 +107,9 @@ function App() {
 					</>
 				}
 			/>
-			<ImagePopup />
+			<ImagePopup
+				onClose={closeAllPopups}
+			/>
 		</div>
 	);
 }
