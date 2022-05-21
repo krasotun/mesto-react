@@ -16,6 +16,8 @@ function App() {
 	function handleAddPlaceClick() {
 		setAddPlacePopupState(true)
 	}
+
+
 	function closeAllPopups() {
 		setEditAvatarPopupState(false)
 		setEditProfilePopupState(false)
@@ -25,6 +27,8 @@ function App() {
 	const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
+	const [selectedCard, handleCardClick] = React.useState();
+
 
 	return (
 
