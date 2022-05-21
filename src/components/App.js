@@ -1,3 +1,4 @@
+import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import ImagePopup from "./ImagePopup";
@@ -7,20 +8,23 @@ import PopupWithForm from "./PopupWithForm";
 function App() {
 
 	function handleEditAvatarClick() {
-		const popupEditAvatar = document.querySelector('.popup-edit-avatar');
-		popupEditAvatar.classList.add('popup_opened');
+		setEditAvatarPopupState(true)
 	}
-
 	function handleEditProfileClick() {
-		const popupEdit = document.querySelector('.popup-edit');
-		popupEdit.classList.add('popup_opened');
+		setEditProfilePopupState(true)
 	}
-
 	function handleAddPlaceClick() {
-		const popupAdd = document.querySelector('.popup-add');
-		popupAdd.classList.add('popup_opened');
+		setAddPlacePopupState(true)
+	}
+	function closeAllPopups() {
+		setEditAvatarPopupState(false)
+		setEditProfilePopupState(false)
+		setAddPlacePopupState(false)
 	}
 
+	const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
+	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
+	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
 
 	return (
 
@@ -35,6 +39,8 @@ function App() {
 			<PopupWithForm
 				name='edit'
 				title='Редактировать профиль'
+				isOpen={isEditProfilePopupOpen}
+				onClose={closeAllPopups}
 				children={
 					<>
 						<fieldset className="form-edit__input-container">
@@ -64,6 +70,8 @@ function App() {
 			<PopupWithForm
 				name='add'
 				title='Новое место'
+				isOpen={isAddPlacePopupOpen}
+				onClose={closeAllPopups}
 				children={
 					<>
 						<fieldset className="form-add__input-container">
@@ -84,6 +92,8 @@ function App() {
 			<PopupWithForm
 				name='edit-avatar'
 				title='Обновить аватар'
+				isOpen={isEditAvatarPopupOpen}
+				onClose={closeAllPopups}
 				children={
 					<>
 						<fieldset className="form-edit-avatar__input-container">
