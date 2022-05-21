@@ -1,10 +1,28 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 
-function App() {
+function App(props) {
+	function handleEditAvatarClick() {
+		const popupEditAvatar = document.querySelector('.popup-edit-avatar');
+		popupEditAvatar.classList.add('popup_opened');
+	}
+
+	function handleEditProfileClick() {
+		const popupEdit = document.querySelector('.popup-edit');
+		popupEdit.classList.add('popup_opened');
+	}
+
+	function handleAddPlaceClick() {
+		const popupAdd = document.querySelector('.popup-add');
+		popupAdd.classList.add('popup_opened');
+	}
+
+
 	return (
+
 		<div className="page__content">
 			<Header />
 			<Main />
@@ -15,10 +33,10 @@ function App() {
 				children={
 					<>
 						<fieldset className="form-edit__input-container">
-							<input minlength="2" maxlength="40" required className="form-edit__item form__item" id="name" type="text"
+							<input minLength="2" maxLength="40" required className="form-edit__item form__item" id="name" type="text"
 								name="name" placeholder="Введите имя" />
 							<span className="form__error" id="name-error"></span>
-							<input minlength="2" maxlength="200" required className="form-edit__item form__item" id="about" type="text"
+							<input minLength="2" maxLength="200" required className="form-edit__item form__item" id="about" type="text"
 								name="about" placeholder="Укажите профессию" />
 							<span className="form__error" id="about-error"></span>
 						</fieldset>
@@ -44,7 +62,7 @@ function App() {
 				children={
 					<>
 						<fieldset className="form-add__input-container">
-							<input required minlength="2" maxlength="40" className="form-add__item form__item" id="place" type="text"
+							<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
 								name="place" placeholder="Название" />
 							<span className="form__error" id="place-error"></span>
 							<input required className="form-add__item form__item" id="link" type="url" name="link"
@@ -74,6 +92,7 @@ function App() {
 					</>
 				}
 			/>
+			<ImagePopup />
 		</div>
 	);
 }
