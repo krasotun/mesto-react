@@ -14,7 +14,7 @@ function Main(props) {
 						<h2 className="profile__subtitle">Веб-разработчик</h2>
 					</div>
 				</div>
-				<button className="profile__post-button button" onClick={props.OnAddPlace}></button>
+				<button className="profile__post-button button" onClick={props.onAddPlace}></button>
 			</section>
 			<section className="elements">
 			</section>

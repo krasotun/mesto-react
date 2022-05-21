@@ -4,7 +4,8 @@ import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 
-function App(props) {
+function App() {
+
 	function handleEditAvatarClick() {
 		const popupEditAvatar = document.querySelector('.popup-edit-avatar');
 		popupEditAvatar.classList.add('popup_opened');
@@ -25,7 +26,11 @@ function App(props) {
 
 		<div className="page__content">
 			<Header />
-			<Main />
+			<Main
+				onEditAvatar={handleEditAvatarClick}
+				onEditProfile={handleEditProfileClick}
+				onAddPlace={handleAddPlaceClick}
+			/>
 			<Footer />
 			<PopupWithForm
 				name='edit'
