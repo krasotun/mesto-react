@@ -16,7 +16,9 @@ function App() {
 	function handleAddPlaceClick() {
 		setAddPlacePopupState(true)
 	}
-
+	function handleCardClick(card) {
+		setSelectedCard(card);
+	}
 
 	function closeAllPopups() {
 		setEditAvatarPopupState(false)
@@ -27,14 +29,13 @@ function App() {
 	const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
-	const [selectedCard, handleCardClick] = React.useState();
-
+	const [selectedCard, setSelectedCard] = React.useState(null);
 
 	return (
-
 		<div className="page__content">
 			<Header />
 			<Main
+				onCardClick={handleCardClick}
 				onEditAvatar={handleEditAvatarClick}
 				onEditProfile={handleEditProfileClick}
 				onAddPlace={handleAddPlaceClick}
@@ -112,6 +113,7 @@ function App() {
 				}
 			/>
 			<ImagePopup
+				card={selectedCard}
 				onClose={closeAllPopups}
 			/>
 		</div>

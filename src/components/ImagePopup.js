@@ -2,16 +2,14 @@ import closeImagePath from "../images/close-icon.svg"
 
 function ImagePopup(props) {
 	return (
-		<section class="popup-card popup">
-			<div class="popup-card__container">
+		<section className={props.card ? `popup-card popup popup_opened` : `popup-card popup`} >
+			<div className="popup-card__container">
 				<img src={closeImagePath} alt="Закрытие окна" className="popup__close" onClick={props.onClose} />
-				<img src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-					class="popup-card__image" alt='Камчатка' />
-				<p class="popup-card__text">Камчатка</p>
+				<img src="123"
+					className="popup-card__image" alt='Камчатка' />
+				<p className="popup-card__text">Название</p>
 			</div>
 		</section>
-
-
 	)
 };
 
