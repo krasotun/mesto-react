@@ -5,9 +5,9 @@ function ImagePopup(props) {
 		<section className={props.card ? `popup-card popup popup_opened` : `popup-card popup`} >
 			<div className="popup-card__container">
 				<img src={closeImagePath} alt="Закрытие окна" className="popup__close" onClick={props.onClose} />
-				<img src="123"
+				<img src='256'
 					className="popup-card__image" alt='Камчатка' />
-				<p className="popup-card__text">Название</p>
+				<p className="popup-card__text">123</p>
 			</div>
 		</section>
 	)
