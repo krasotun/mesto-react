@@ -24,13 +24,13 @@ function App() {
 		setEditAvatarPopupState(false)
 		setEditProfilePopupState(false)
 		setAddPlacePopupState(false)
-		setSelectedCard(false)
+		setSelectedCard({ name: '', link: '' })
 	}
 
 	const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
-	const [selectedCard, setSelectedCard] = React.useState(false);
+	const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
 
 	return (
 		<div className="page__content">
