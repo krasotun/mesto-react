@@ -47,6 +47,7 @@ function App() {
 				title='Редактировать профиль'
 				isOpen={isEditProfilePopupOpen}
 				onClose={closeAllPopups}
+				submitButtonText="Сохранить"
 				children={
 					<>
 						<fieldset className="form-edit__input-container">
@@ -57,20 +58,13 @@ function App() {
 								name="about" placeholder="Укажите профессию" />
 							<span className="form__error" id="about-error"></span>
 						</fieldset>
-						<button type="submit" className="form-edit__submit-button form__submit-button button">
-							Сохранить
-						</button>
 					</>
 				}
 			/>
 			<PopupWithForm
 				name='confirm'
 				title='Вы уверены?'
-				children={
-					<button type="submit" className="form-confirm__submit-button form__submit-button button">
-						Да
-					</button>
-				}
+				submitButtonText="Да"
 			/>
 
 			<PopupWithForm
@@ -78,6 +72,7 @@ function App() {
 				title='Новое место'
 				isOpen={isAddPlacePopupOpen}
 				onClose={closeAllPopups}
+				submitButtonText="Создать"
 				children={
 					<>
 						<fieldset className="form-add__input-container">
@@ -88,9 +83,7 @@ function App() {
 								placeholder="Ссылка на картинку" />
 							<span className="form__error" id="link-error"></span>
 						</fieldset>
-						<button type="submit" className="form-add__submit-button form__submit-button_inactive form__submit-button button">
-							Создать
-						</button>
+
 					</>
 				}
 			/>
@@ -100,6 +93,7 @@ function App() {
 				title='Обновить аватар'
 				isOpen={isEditAvatarPopupOpen}
 				onClose={closeAllPopups}
+				submitButtonText="Сохранить"
 				children={
 					<>
 						<fieldset className="form-edit-avatar__input-container">
@@ -107,9 +101,6 @@ function App() {
 								placeholder="Ссылка на новый аватар" />
 							<span className="form__error" id="avatar-error"></span>
 						</fieldset>
-						<button type="submit" className="form-edit-avatar__submit-button  form__submit-button button">
-							Сохранить
-						</button>
 					</>
 				}
 			/>
