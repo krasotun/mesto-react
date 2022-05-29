@@ -42,25 +42,24 @@ function App() {
 				onAddPlace={handleAddPlaceClick}
 			/>
 			<Footer />
+
 			<PopupWithForm
 				name='edit'
 				title='Редактировать профиль'
 				isOpen={isEditProfilePopupOpen}
 				onClose={closeAllPopups}
 				submitButtonText="Сохранить"
-				children={
-					<>
-						<fieldset className="form-edit__input-container">
-							<input minLength="2" maxLength="40" required className="form-edit__item form__item" id="name" type="text"
-								name="name" placeholder="Введите имя" />
-							<span className="form__error" id="name-error"></span>
-							<input minLength="2" maxLength="200" required className="form-edit__item form__item" id="about" type="text"
-								name="about" placeholder="Укажите профессию" />
-							<span className="form__error" id="about-error"></span>
-						</fieldset>
-					</>
-				}
-			/>
+			>
+				<fieldset className="form-edit__input-container">
+					<input minLength="2" maxLength="40" required className="form-edit__item form__item" id="name" type="text"
+						name="name" placeholder="Введите имя" />
+					<span className="form__error" id="name-error"></span>
+					<input minLength="2" maxLength="200" required className="form-edit__item form__item" id="about" type="text"
+						name="about" placeholder="Укажите профессию" />
+					<span className="form__error" id="about-error"></span>
+				</fieldset>
+			</PopupWithForm>
+
 			<PopupWithForm
 				name='confirm'
 				title='Вы уверены?'
@@ -73,20 +72,17 @@ function App() {
 				isOpen={isAddPlacePopupOpen}
 				onClose={closeAllPopups}
 				submitButtonText="Создать"
-				children={
-					<>
-						<fieldset className="form-add__input-container">
-							<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
-								name="place" placeholder="Название" />
-							<span className="form__error" id="place-error"></span>
-							<input required className="form-add__item form__item" id="link" type="url" name="link"
-								placeholder="Ссылка на картинку" />
-							<span className="form__error" id="link-error"></span>
-						</fieldset>
+			>
+				<fieldset className="form-add__input-container">
+					<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
+						name="place" placeholder="Название" />
+					<span className="form__error" id="place-error"></span>
+					<input required className="form-add__item form__item" id="link" type="url" name="link"
+						placeholder="Ссылка на картинку" />
+					<span className="form__error" id="link-error"></span>
+				</fieldset>
 
-					</>
-				}
-			/>
+			</PopupWithForm>
 
 			<PopupWithForm
 				name='edit-avatar'
@@ -94,16 +90,13 @@ function App() {
 				isOpen={isEditAvatarPopupOpen}
 				onClose={closeAllPopups}
 				submitButtonText="Сохранить"
-				children={
-					<>
-						<fieldset className="form-edit-avatar__input-container">
-							<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
-								placeholder="Ссылка на новый аватар" />
-							<span className="form__error" id="avatar-error"></span>
-						</fieldset>
-					</>
-				}
-			/>
+			>
+				<fieldset className="form-edit-avatar__input-container">
+					<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
+						placeholder="Ссылка на новый аватар" />
+					<span className="form__error" id="avatar-error"></span>
+				</fieldset>
+			</PopupWithForm>
 			<ImagePopup
 				card={selectedCard}
 				onClose={closeAllPopups}
