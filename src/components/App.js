@@ -1,4 +1,5 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api } from "../utils/api";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -32,107 +33,108 @@ function App() {
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
 	const [selectedCard, setSelectedCard] = React.useState(false);
-
 	const [currentUser, setCurrentUser] = React.useState({});
 
 	React.useEffect(() => {
 		api.getUserInfo()
 			.then((data) => {
-				console.log(data);
 				setCurrentUser(data);
 			}).catch((r) => {
 				console.log(r);
 			})
-
 	}, [])
 
 
 	return (
+
 		<div className="page__content">
-			<Header />
-			<Main
-				onCardClick={handleCardClick}
-				onEditAvatar={handleEditAvatarClick}
-				onEditProfile={handleEditProfileClick}
-				onAddPlace={handleAddPlaceClick}
-			/>
-			<Footer />
-			<PopupWithForm
-				name='edit'
-				title='Редактировать профиль'
-				isOpen={isEditProfilePopupOpen}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<fieldset className="form-edit__input-container">
-							<input minLength="2" maxLength="40" required className="form-edit__item form__item" id="name" type="text"
-								name="name" placeholder="Введите имя" />
-							<span className="form__error" id="name-error"></span>
-							<input minLength="2" maxLength="200" required className="form-edit__item form__item" id="about" type="text"
-								name="about" placeholder="Укажите профессию" />
-							<span className="form__error" id="about-error"></span>
-						</fieldset>
-						<button type="submit" className="form-edit__submit-button form__submit-button button">
-							Сохранить
+			<CurrentUserContext.Provider value={currentUser}>
+				<Header />
+				<Main
+					onCardClick={handleCardClick}
+					onEditAvatar={handleEditAvatarClick}
+					onEditProfile={handleEditProfileClick}
+					onAddPlace={handleAddPlaceClick}
+				/>
+				<Footer />
+				<PopupWithForm
+					name='edit'
+					title='Редактировать профиль'
+					isOpen={isEditProfilePopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<fieldset className="form-edit__input-container">
+								<input minLength="2" maxLength="40" required className="form-edit__item form__item" id="name" type="text"
+									name="name" placeholder="Введите имя" />
+								<span className="form__error" id="name-error"></span>
+								<input minLength="2" maxLength="200" required className="form-edit__item form__item" id="about" type="text"
+									name="about" placeholder="Укажите профессию" />
+								<span className="form__error" id="about-error"></span>
+							</fieldset>
+							<button type="submit" className="form-edit__submit-button form__submit-button button">
+								Сохранить
+							</button>
+						</>
+					}
+				/>
+				<PopupWithForm
+					name='confirm'
+					title='Вы уверены?'
+					children={
+						<button type="submit" className="form-confirm__submit-button form__submit-button button">
+							Да
 						</button>
-					</>
-				}
-			/>
-			<PopupWithForm
-				name='confirm'
-				title='Вы уверены?'
-				children={
-					<button type="submit" className="form-confirm__submit-button form__submit-button button">
-						Да
-					</button>
-				}
-			/>
+					}
+				/>
 
-			<PopupWithForm
-				name='add'
-				title='Новое место'
-				isOpen={isAddPlacePopupOpen}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<fieldset className="form-add__input-container">
-							<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
-								name="place" placeholder="Название" />
-							<span className="form__error" id="place-error"></span>
-							<input required className="form-add__item form__item" id="link" type="url" name="link"
-								placeholder="Ссылка на картинку" />
-							<span className="form__error" id="link-error"></span>
-						</fieldset>
-						<button type="submit" className="form-add__submit-button form__submit-button_inactive form__submit-button button">
-							Создать
-						</button>
-					</>
-				}
-			/>
+				<PopupWithForm
+					name='add'
+					title='Новое место'
+					isOpen={isAddPlacePopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<fieldset className="form-add__input-container">
+								<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
+									name="place" placeholder="Название" />
+								<span className="form__error" id="place-error"></span>
+								<input required className="form-add__item form__item" id="link" type="url" name="link"
+									placeholder="Ссылка на картинку" />
+								<span className="form__error" id="link-error"></span>
+							</fieldset>
+							<button type="submit" className="form-add__submit-button form__submit-button_inactive form__submit-button button">
+								Создать
+							</button>
+						</>
+					}
+				/>
 
-			<PopupWithForm
-				name='edit-avatar'
-				title='Обновить аватар'
-				isOpen={isEditAvatarPopupOpen}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<fieldset className="form-edit-avatar__input-container">
-							<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
-								placeholder="Ссылка на новый аватар" />
-							<span className="form__error" id="avatar-error"></span>
-						</fieldset>
-						<button type="submit" className="form-edit-avatar__submit-button  form__submit-button button">
-							Сохранить
-						</button>
-					</>
-				}
-			/>
-			<ImagePopup
-				card={selectedCard}
-				onClose={closeAllPopups}
-			/>
+				<PopupWithForm
+					name='edit-avatar'
+					title='Обновить аватар'
+					isOpen={isEditAvatarPopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<fieldset className="form-edit-avatar__input-container">
+								<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
+									placeholder="Ссылка на новый аватар" />
+								<span className="form__error" id="avatar-error"></span>
+							</fieldset>
+							<button type="submit" className="form-edit-avatar__submit-button  form__submit-button button">
+								Сохранить
+							</button>
+						</>
+					}
+				/>
+				<ImagePopup
+					card={selectedCard}
+					onClose={closeAllPopups}
+				/>
+			</CurrentUserContext.Provider>
 		</div>
+
 	);
 }
 
