@@ -1,4 +1,5 @@
 import React from "react";
+import { api } from "../utils/api";
 import Footer from "./Footer";
 import Header from "./Header";
 import ImagePopup from "./ImagePopup";
@@ -31,6 +32,20 @@ function App() {
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
 	const [selectedCard, setSelectedCard] = React.useState(false);
+
+	const [currentUser, setCurrentUser] = React.useState({});
+
+	React.useEffect(() => {
+		api.getUserInfo()
+			.then((data) => {
+				console.log(data);
+				setCurrentUser(data);
+			}).catch((r) => {
+				console.log(r);
+			})
+
+	}, [])
+
 
 	return (
 		<div className="page__content">
