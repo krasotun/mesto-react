@@ -54,6 +54,11 @@ class Api {
 			})
 		}).then(this._checkServerStatus)
 	}
+	changeLikeCardStatus(data, isLiked) {
+		isLiked ? this.removeLike(data) : this.addLike(data);
+
+	}
+
 	deleteCard(data) {
 		return fetch(`${this._baseUrl}/cards/${data._id}`, {
 			method: "DELETE",

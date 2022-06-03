@@ -7,9 +7,13 @@ import Card from "./Card";
 function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
 
 	const [cards, setCards] = React.useState([]);
-
 	const currentUser = React.useContext(CurrentUserContext);
-
+	function handleCardLike(card) {
+		// const isLiked = card.likes.some(i => i._id === currentUser._id);
+		// const isLiked = card.likes.length;
+		// console.log(isLiked);
+		console.log('Like clicked');
+	}
 
 	React.useEffect(() => {
 		api.getInitialCards()
@@ -39,6 +43,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
 			<section className="elements" >
 				{cards.map((card) =>
 					<Card
+						onCardLike={handleCardLike}
 						onCardClick={onCardClick}
 						card={card}
 						key={card._id}
