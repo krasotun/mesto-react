@@ -6,6 +6,10 @@ function Card({ card, name, link, likes, onCardClick, onCardLike }) {
 	function handleClick() {
 		onCardClick(card);
 	}
+
+	function handleLikeClick() {
+		onCardLike(card)
+	}
 	const currentUser = React.useContext(CurrentUserContext);
 	const isOwn = card.owner._id === currentUser._id;
 	const isLiked = card.likes.some((i) =>
@@ -27,7 +31,7 @@ function Card({ card, name, link, likes, onCardClick, onCardLike }) {
 			<div className="elements__text-container">
 				<p className="elements__text">{name}</p>
 				<div className="elements__like-container">
-					<div className={cardLikeButtonClassName} onClick={onCardLike(card)}></div>
+					<div className={cardLikeButtonClassName} onClick={handleLikeClick}></div>
 					<span className="elements__like-count">{likes.length}</span>
 				</div>
 			</div>

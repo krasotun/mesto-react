@@ -9,10 +9,8 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
 	const [cards, setCards] = React.useState([]);
 	const currentUser = React.useContext(CurrentUserContext);
 	function handleCardLike(card) {
-		// const isLiked = card.likes.some(i => i._id === currentUser._id);
-		// const isLiked = card.likes.length;
-		// console.log(isLiked);
-		console.log('Like clicked');
+		const isLiked = card.likes.some((i) =>
+			i._id === currentUser._id);
 	}
 
 	React.useEffect(() => {
