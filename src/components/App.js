@@ -1,6 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api } from "../utils/api";
+import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -71,6 +72,10 @@ function App() {
 					onClose={closeAllPopups}
 					onUpdateUser={handleUpdateUser}
 				/>
+				<EditAvatarPopup
+					isOpen={isEditAvatarPopupOpen}
+					onClose={closeAllPopups}
+				/>
 				<PopupWithForm
 					name='confirm'
 					title='Вы уверены?'
@@ -103,24 +108,7 @@ function App() {
 					}
 				/>
 
-				<PopupWithForm
-					name='edit-avatar'
-					title='Обновить аватар'
-					isOpen={isEditAvatarPopupOpen}
-					onClose={closeAllPopups}
-					children={
-						<>
-							<fieldset className="form-edit-avatar__input-container">
-								<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
-									placeholder="Ссылка на новый аватар" />
-								<span className="form__error" id="avatar-error"></span>
-							</fieldset>
-							<button type="submit" className="form-edit-avatar__submit-button  form__submit-button button">
-								Сохранить
-							</button>
-						</>
-					}
-				/>
+
 				<ImagePopup
 					card={selectedCard}
 					onClose={closeAllPopups}
