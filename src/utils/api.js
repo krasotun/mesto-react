@@ -54,26 +54,27 @@ class Api {
 			})
 		}).then(this._checkServerStatus)
 	}
-	changeLikeCardStatus(data, isLiked) {
-		isLiked ? this.removeLike(data) : this.addLike(data);
-
+	changeLikeCardStatus(id, isLiked) {
+		if (isLiked) {
+			return this.removeLike(id);
+		} else {
+			return this.addLike(id);
+		}
 	}
-
-	deleteCard(data) {
-		return fetch(`${this._baseUrl}/cards/${data._id}`, {
-			method: "DELETE",
-			headers: this._headers
-		}).then(this._checkServerStatus)
-	}
-	addLike(data) {
-		console.log(data);
-		return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
+	addLike(id) {
+		return fetch(`${this._baseUrl}/cards/${id}/likes`, {
 			method: "PUT",
 			headers: this._headers
 		}).then(this._checkServerStatus)
 	}
-	removeLike(data) {
-		return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
+	removeLike(id) {
+		return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+			method: "DELETE",
+			headers: this._headers
+		}).then(this._checkServerStatus)
+	}
+	deleteCard(data) {
+		return fetch(`${this._baseUrl}/cards/${data._id}`, {
 			method: "DELETE",
 			headers: this._headers
 		}).then(this._checkServerStatus)
