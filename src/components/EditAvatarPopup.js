@@ -1,8 +1,18 @@
+import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({ isOpen, onClose }) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+	const avatarRef = React.useRef();
+	React.useEffect(() => {
+		avatarRef.current.value = '';
+	})
+	function handleSubmit(event) {
+		event.preventDefault();
+		onUpdateAvatar(avatarRef.current.value);
+	}
 	return (
 		<PopupWithForm
+			onSubmit={handleSubmit}
 			name='edit-avatar'
 			title='Обновить аватар'
 			isOpen={isOpen}
@@ -10,7 +20,7 @@ function EditAvatarPopup({ isOpen, onClose }) {
 			children={
 				<>
 					<fieldset className="form-edit-avatar__input-container">
-						<input required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
+						<input ref={avatarRef} required className="form-edit-avatar form__item" id="avatar" type="url" name="avatar"
 							placeholder="Ссылка на новый аватар" />
 						<span className="form__error" id="avatar-error"></span>
 					</fieldset>
