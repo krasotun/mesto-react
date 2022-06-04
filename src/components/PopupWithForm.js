@@ -1,13 +1,13 @@
 import closeImagePath from "../images/close-icon.svg"
 
-function PopupWithForm(props) {
+function PopupWithForm({ isOpen, name, title, onClose, onSubmit, children }) {
 	return (
-		<section className={props.isOpen ? `popup-${props.name} popup popup_opened` : `popup-${props.name} popup`} >
+		<section className={isOpen ? `popup-${name} popup popup_opened` : `popup-${name} popup`} >
 			<div className="popup__container">
-				<img src={closeImagePath} alt="Закрытие окна" className="popup__close" onClick={props.onClose} />
-				<form className={`form-${props.name} form`}>
-					<h2 className={`form-${props.name}__title`}>{props.title}</h2>
-					{props.children}
+				<img src={closeImagePath} alt="Закрытие окна" className="popup__close" onClick={onClose} />
+				<form className={`form-${name} form`} onSubmit={onSubmit}>
+					<h2 className={`form-${name}__title`}>{title}</h2>
+					{children}
 				</form>
 			</div>
 		</section>

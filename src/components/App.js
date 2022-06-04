@@ -23,6 +23,15 @@ function App() {
 		setSelectedCard(card);
 	}
 
+	function handleUpdateUser(data) {
+		api.setUserInfo(data)
+			.then((data) =>
+				setCurrentUser(data))
+			.catch((r) =>
+				console.log(r))
+		closeAllPopups();
+	}
+
 	function closeAllPopups() {
 		setEditAvatarPopupState(false)
 		setEditProfilePopupState(false)
@@ -34,7 +43,7 @@ function App() {
 	const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
 	const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
 	const [selectedCard, setSelectedCard] = React.useState(false);
-	const [currentUser, setCurrentUser] = React.useState({});
+	const [currentUser, setCurrentUser] = React.useState({ name: "", description: "" });
 
 	React.useEffect(() => {
 		api.getUserInfo()
@@ -44,7 +53,6 @@ function App() {
 				console.log(r);
 			})
 	}, [])
-
 
 	return (
 
@@ -61,6 +69,7 @@ function App() {
 				<EditProfilePopup
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}
+					onUpdateUser={handleUpdateUser}
 				/>
 				<PopupWithForm
 					name='confirm'
