@@ -1,6 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api } from "../utils/api";
+import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import Footer from "./Footer";
@@ -123,6 +124,10 @@ function App() {
 					onClose={closeAllPopups}
 					onUpdateAvatar={handleUpdateAvatar}
 				/>
+				<AddPlacePopup
+					isOpen={isAddPlacePopupOpen}
+					onClose={closeAllPopups}
+				/>
 				<PopupWithForm
 					name='confirm'
 					title='Вы уверены?'
@@ -132,29 +137,6 @@ function App() {
 						</button>
 					}
 				/>
-
-				<PopupWithForm
-					name='add'
-					title='Новое место'
-					isOpen={isAddPlacePopupOpen}
-					onClose={closeAllPopups}
-					children={
-						<>
-							<fieldset className="form-add__input-container">
-								<input required minLength="2" maxLength="40" className="form-add__item form__item" id="place" type="text"
-									name="place" placeholder="Название" />
-								<span className="form__error" id="place-error"></span>
-								<input required className="form-add__item form__item" id="link" type="url" name="link"
-									placeholder="Ссылка на картинку" />
-								<span className="form__error" id="link-error"></span>
-							</fieldset>
-							<button type="submit" className="form-add__submit-button form__submit-button_inactive form__submit-button button">
-								Создать
-							</button>
-						</>
-					}
-				/>
-
 
 				<ImagePopup
 					card={selectedCard}
