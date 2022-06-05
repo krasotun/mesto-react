@@ -44,13 +44,13 @@ class Api {
 			})
 		}).then(this._checkServerStatus)
 	}
-	postNewCard(data) {
+	postNewCard({ name, link }) {
 		return fetch(`${this._baseUrl}/cards`, {
 			method: "POST",
 			headers: this._headers,
 			body: JSON.stringify({
-				name: data.place,
-				link: data.link
+				name,
+				link
 			})
 		}).then(this._checkServerStatus)
 	}

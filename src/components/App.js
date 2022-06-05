@@ -32,6 +32,16 @@ function App() {
 				console.log(r))
 		closeAllPopups();
 	}
+	function handleAddPlace(data) {
+		api.postNewCard(data)
+			.then((addedCard) => {
+				setCards([addedCard, ...cards])
+			})
+			.catch((r) => {
+				console.log(r);
+			})
+		closeAllPopups();
+	}
 
 	function handleUpdateAvatar(link) {
 		api.updateAvatar(link)
@@ -43,6 +53,8 @@ function App() {
 			})
 		closeAllPopups();
 	}
+
+
 
 	function handleCardLike(card) {
 		const isLiked = card.likes.some((i) =>
@@ -127,6 +139,7 @@ function App() {
 				<AddPlacePopup
 					isOpen={isAddPlacePopupOpen}
 					onClose={closeAllPopups}
+					onAddPlace={handleAddPlace}
 				/>
 				<PopupWithForm
 					name='confirm'
