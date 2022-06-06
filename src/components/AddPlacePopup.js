@@ -5,25 +5,28 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 	const [place, setPlace] = React.useState();
 	const [link, setLink] = React.useState();
 
+	React.useEffect(() => {
+		if (isOpen) {
+			setPlace('');
+			setLink("");
+		}
+	}, [isOpen])
+
 	function handleAddPlaceSubmit(event) {
 		event.preventDefault();
 		onAddPlace({
 			name: place,
 			link,
 		});
-		setPlace('');
-		setLink('');
 	}
+
 	function handlePlaceChange(event) {
 		setPlace(event.target.value);
 	}
 	function handleLinkChange(event) {
 		setLink(event.target.value);
 	}
-	React.useEffect(() => {
-		setPlace('');
-		setLink('');
-	}, [])
+
 	return (
 		<PopupWithForm
 			onSubmit={handleAddPlaceSubmit}
