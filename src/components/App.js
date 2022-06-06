@@ -55,8 +55,6 @@ function App() {
 			})
 	}
 
-
-
 	function handleCardLike(card) {
 		const isLiked = card.likes.some((i) =>
 			i._id === currentUser._id);
@@ -71,11 +69,13 @@ function App() {
 
 	function handleCardDelete(card) {
 		api.deleteCard(card._id)
+			.then(() => {
+				const filteredCards = cards.filter(filteredCard => filteredCard !== card)
+				setCards(filteredCards)
+			})
 			.catch((r) => {
 				console.log(r);
 			})
-		const filteredCards = cards.filter(filteredCard => filteredCard !== card)
-		setCards(filteredCards);
 	}
 
 	function closeAllPopups() {
