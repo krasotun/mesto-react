@@ -26,32 +26,33 @@ function App() {
 
 	function handleUpdateUser(data) {
 		api.setUserInfo(data)
-			.then((data) =>
-				setCurrentUser(data))
+			.then((data) => {
+				setCurrentUser(data)
+				closeAllPopups();
+			})
 			.catch((r) =>
 				console.log(r))
-		closeAllPopups();
 	}
 	function handleAddPlace(data) {
 		api.postNewCard(data)
 			.then((addedCard) => {
 				setCards([addedCard, ...cards])
+				closeAllPopups();
 			})
 			.catch((r) => {
 				console.log(r);
 			})
-		closeAllPopups();
 	}
 
 	function handleUpdateAvatar(link) {
 		api.updateAvatar(link)
 			.then((data) => {
 				setCurrentUser(data);
+				closeAllPopups();
 			})
 			.catch((r) => {
 				console.log(r);
 			})
-		closeAllPopups();
 	}
 
 
